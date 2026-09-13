@@ -80,9 +80,7 @@ class StereoCamera:
           enumerates, described in the Convention block on
           :class:`~kornia.geometry.camera.pinhole.PinholeCamera`.
         - ``u`` is the **column** index and ``v`` the **row** index, as in ``cv2.reprojectImageTo3D``:
-          :math:`X = (u - c_x) Z / f_x` and :math:`Y = (v - c_y) Z / f_y`. The two were transposed until
-          `#4269 <https://github.com/kornia/kornia/issues/4269>`_, so output changes for any
-          non-square input.
+          :math:`X = (u - c_x) Z / f_x` and :math:`Y = (v - c_y) Z / f_y`.
 
     .. warning::
         Several of the constructor guards do not enforce the contract above. A differing ``cx`` is
