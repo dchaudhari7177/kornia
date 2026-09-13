@@ -381,6 +381,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bug fixes
 
+* `kornia.contrib.diamond_square` generates fractals with a spatial side below 3 px. A 1 px side raised
+  `ValueError: math domain error` and a 2 px side a `TypeError` from a float in the `torch.rand` size, so
+  `RandomPlasmaBrightness`, `RandomPlasmaContrast` and `RandomPlasmaShadow` failed on such images. A small
+  side is now drawn on the 3 px grid and sliced; outputs for sides of 3 px and more are bit-identical.
+  (#4472, #4488)
+
 * `RandomMosaic` now preserves `(H, W)` for non-square inputs when `output_size=None`; it previously
   returned `(W, H)`. `start_ratio_range` now scales x by width and y by height; it previously scaled
   x by height and y by width. (#4459)
