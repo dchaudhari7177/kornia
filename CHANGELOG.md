@@ -381,6 +381,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bug fixes
 
+* `transform_points` returns an empty result for an empty transform batch whose points carry a non-empty
+  point axis, such as `(0, 4, 4)` transforms with `(0, 5, 3)` points. It used to raise `ZeroDivisionError`
+  expanding the transforms (`0 // 0`), and `PinholeCamera.project` inherited the crash for an empty camera
+  batch on `(0, N, 3)` points. (#4466, #4487)
+
 * `RandomMosaic` now preserves `(H, W)` for non-square inputs when `output_size=None`; it previously
   returned `(W, H)`. `start_ratio_range` now scales x by width and y by height; it previously scaled
   x by height and y by width. (#4459)
