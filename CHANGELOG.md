@@ -381,6 +381,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bug fixes
 
+* `RandomBoxBlur`'s `normalized` argument is documented as what it does. It was described as "if True, L1 norm
+  of the kernel is set to 1", but it was forwarded positionally into `kornia.filters.box_blur`'s `separable`
+  parameter: it chooses between the separable and the single 2D pass, and the kernel is L1-normalized either
+  way, so `normalized=False` returns window means, not sums. The call now passes `border_type` and
+  `separable` by keyword; outputs are unchanged. (#4433, #4486)
+
 * `RandomMosaic` now preserves `(H, W)` for non-square inputs when `output_size=None`; it previously
   returned `(W, H)`. `start_ratio_range` now scales x by width and y by height; it previously scaled
   x by height and y by width. (#4459)
