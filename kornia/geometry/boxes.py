@@ -1154,8 +1154,8 @@ class VideoBoxes(Boxes):
                 changes the result of a list-backed container; a
                 :class:`VideoBoxes` built from a :math:`(B, T, N, 4, 2)` tensor
                 is not list-backed, so the value makes no difference there. The
-                keyword is accepted because the inherited :meth:`get_boxes_shape`,
-                :meth:`to_mask`, :meth:`clip` and :meth:`clamp` all pass it.
+                keyword is accepted because the inherited :meth:`get_boxes_shape`
+                and :meth:`to_mask` pass it.
 
         Returns:
             Tensor shaped :math:`(B, T, \ldots)` where :math:`T` is

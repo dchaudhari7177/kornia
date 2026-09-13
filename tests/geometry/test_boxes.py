@@ -1969,6 +1969,6 @@ class TestVideoBoxes(BaseTester):
             mask = video_boxes.to_mask(4, 5)
         except TypeError as error:
             raise AssertionError(str(error)) from error
-        # One extent per box and one (4, 5) mask per box, whichever way the temporal axis is laid out.
+        # One extent per box, and the mask keeps the flattened-time convention (B*T, N, H, W).
         assert heights.numel() == widths.numel() == 6
-        assert mask.shape[-2:] == (4, 5) and mask.numel() == 6 * 4 * 5
+        assert mask.shape == (6, 1, 4, 5)
